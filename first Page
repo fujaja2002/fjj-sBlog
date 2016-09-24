@@ -1,0 +1,7 @@
+第一章 beautiful soup
+
+其实很简单，首先要做的安装beautiful soup，教程网上都有。
+
+但是我遇到的一个python库导入的坑，如果电脑中装了很多python的IDE，其中有的IDE是自带python的，那么在命令行中，运行pip工具的时候，可能要先配置一下环境变量，不然都不知道装的是哪个python
+
+装好了beautiful soup以后，就可以开始用了，关于beautifulsoup可以看很多的文档
