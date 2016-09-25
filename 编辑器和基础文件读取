@@ -1,0 +1,56 @@
+一：编辑器
+
+我一般喜欢用sublime text2来做编辑器，主要是界面简洁，非常喜欢。但是这个工具比较简洁，配置起来有一些小坑，以后遇到的时候再解决。
+配置编辑器也十分简单，选择Tools\Build System\New Build System，会打开一个新脚本，复制黏贴如下内容
+{
+	"cmd":["python.exe", "-u", "$file"],
+	"path":"C:/Users/win7/AppData/Local/Enthought/Canopy/User/Scripts",
+	"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+	"selector": "source.python",
+	"encoding":"utf-8"
+}
+
+这个基本上其实我也不知道具体是干嘛用的，可以简单理解为一个配置文件。 encoding是一个比较会遇到问题的，这里默认是utf-8就好
+
+然后给这个文件取一个切题的名字，python_build之类的，保存，然后在Tools\Build System里选择这个，就可以开始写python了
+
+一般开篇都是, print "hello world"
+
+二、基础文件读取
+要处理系统文件，第一步，导入系统操作库，就是在脚本的最上面写下 import io，就可以使用文件读取功能了
+操作也很简单，最简单的方法open，在脚本中输入如下命令
+
+path = r'f:/tt.txt'
+f = open(path, 'w')
+f.write("hello world")
+
+一句句看， f = open(path,‘w')
+以我粗浅的知识来看，open返回的是一个文件的句柄，这个方法有两个参数，第一个代表了文件的路径，第二个是代表了你要怎么处理这个文件，'w'的意思就是write，复写，就是说有这个文件的话，覆盖他，没有这个文件就新建一个。其他的参数如下:
+w     以写方式打开，
+a     以追加模式打开 (从文件末尾开始写入, 必要时创建新文件)
+r+     以读写模式打开（从文件的开头开始写入）
+w+     以读写模式打开 
+a+     以读写模式打开 
+
+然后就是读写了
+f.write("hello world") 写入hello world这个字符串
+f.read() 返回的就是txt中的全部内容
+f.readline()就是按行读取。
+
+这是简单的第一篇，以下代码输入了5行hello world，然后把他存在txt中，然后按行读取出来，嘿嘿
+import io
+
+path = r'f:/ttt.txt'
+f = open(path, 'w')
+x = 0
+while x < 5:
+	f.write("hello world\n")
+	x= x+1
+f.close()
+
+f2 = open(path, 'r')
+a = f2.readline()
+while a:
+	print a
+	a = f2.readline()
+f2.close()
